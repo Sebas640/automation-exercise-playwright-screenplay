@@ -20,4 +20,15 @@ export class BrowseTheWeb implements Ability {
   find(target: Target): Locator {
     return target.resolveFor(this.page);
   }
+
+  /**
+   * Espera a que la página actual termine de cargar (evento "load").
+   * El sitio registra con jQuery el comportamiento de menús desplegables y
+   * formularios; si se interactúa antes, el clic no tiene efecto o el
+   * formulario se envía de forma nativa y recarga la página.
+   * Es una espera por condición, no una pausa fija.
+   */
+  async waitUntilPageIsReady(): Promise<void> {
+    await this.page.waitForLoadState('load');
+  }
 }
