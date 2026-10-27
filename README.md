@@ -117,6 +117,11 @@ npx playwright install chromium
 | `npm run report` | Abre el reporte HTML de la última ejecución. |
 | `npm run typecheck` | Revisa los tipos de TypeScript. |
 
+Configuración relevante (`playwright.config.ts`): solo Chromium, 2 workers y 1 reintento. El reintento
+existe porque el servidor del sitio a veces deja de responder unos segundos al cargar la página; si una
+prueba pasa solo en el reintento, el reporte la marca como **flaky**. Los resultados esperados no cambian:
+un fallo real falla en los dos intentos.
+
 Evidencias:
 
 - **Reporte HTML:** `playwright-report/index.html`.
